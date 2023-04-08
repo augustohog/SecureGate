@@ -1,7 +1,7 @@
 package com.augusto.securegate.domain.enums;
 
 public enum Perfil {
-	SINDICO(0, "ROLE_ADMIN"), MORADOR(1, "ROLE_MORADOR"), PORTEIRO(2, "ROLE_PORTEIRO");
+	SINDICO(0, "ROLE_SINDICO"), MORADOR(1, "ROLE_MORADOR"), PORTEIRO(2, "ROLE_PORTEIRO");
 	
 	private Integer codigo;
 	private String descricao;

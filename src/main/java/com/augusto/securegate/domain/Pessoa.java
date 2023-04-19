@@ -20,7 +20,6 @@ public abstract class Pessoa {
 	public Pessoa() {
 		super();
 		addPerfil(Perfil.MORADOR);
-		// TODO Auto-generated constructor stub
 	}
 
 

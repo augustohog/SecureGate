@@ -20,8 +20,8 @@ public class Morador extends Pessoa {
 		addPerfil(Perfil.MORADOR);
 	}
 
-	public Morador(Integer id, String nome, String cpf) {
-		super(id, nome, cpf);
+	public Morador(Integer id, String nome, String cpf, String email, String senha) {
+		super(id, nome, cpf, email, senha);
 	}
 
 	public List<Controle> getControles() {

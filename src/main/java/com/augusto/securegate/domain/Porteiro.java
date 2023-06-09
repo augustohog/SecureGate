@@ -20,8 +20,8 @@ public class Porteiro extends Pessoa {
 		addPerfil(Perfil.PORTEIRO);
 	}
 
-	public Porteiro(Integer id, String nome, String cpf) {
-		super(id, nome, cpf);
+	public Porteiro(Integer id, String nome, String cpf, String email, String senha) {
+		super(id, nome, cpf, email, senha);
 	}
 
 	public List<Controle> getControles() {

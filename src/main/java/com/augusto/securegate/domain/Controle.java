@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.augusto.securegate.domain.enums.Status;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
@@ -25,6 +26,8 @@ public class Controle implements Serializable {
 	private LocalDate dataEntrada = LocalDate.now();
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dataSaida;
+	
+	private Status status;
 	private String observações;
 	
 	@ManyToOne
@@ -38,13 +41,24 @@ public class Controle implements Serializable {
 		super();
 	}
 	
-	public Controle(Integer id, String observações, Porteiro porteiro, Morador morador) {
+	public Controle(Integer id, Status status, String observações, Porteiro porteiro, Morador morador) {
 		super();
 		this.id = id;
+		this.status = status;
 		this.observações = observações;
 		this.porteiro = porteiro;
 		this.morador = morador;
 	}
+	
+	
+	public Status getStatus() {
+		return status;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+
 	public Integer getId() {
 		return id;
 	}

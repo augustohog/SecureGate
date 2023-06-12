@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.augusto.securegate.domain.Porteiro;
+import com.augusto.securegate.domain.dtos.PorteiroDTO;
 import com.augusto.securegate.repositories.PorteiroRepository;
 import com.augusto.securegate.services.exceptions.ObjectNotFoundException;
 
@@ -24,6 +25,12 @@ public class PorteiroService {
 
 	public List<Porteiro> findAll() {
 		return repository.findAll();
+	}
+
+	public Porteiro create(PorteiroDTO objDTO) {
+		objDTO.setId(null);
+		Porteiro newObj = new Porteiro(objDTO);
+		return repository.save(newObj);
 	}
 
 }

@@ -28,10 +28,14 @@ public class DBService {
 		Porteiro por1 = new Porteiro(null, "Augusto Henrique", "550.482.150-95", "augusto@mail.com", "123");
 		por1.addPerfil(Perfil.PORTEIRO);
 		Porteiro por2 = new Porteiro(null, "Luana Souza", "903.347.070-56", "luana@mail.com", "123");
+		por2.addPerfil(Perfil.PORTEIRO);
 		Porteiro por3 = new Porteiro(null, "Claude Elwood Shannon", "271.068.470-54", "shannon@mail.com", "123");
+		por3.addPerfil(Perfil.PORTEIRO);
 		Porteiro por4 = new Porteiro(null, "Tim Berners-Lee", "162.720.120-39", "lee@mail.com", "123");
+		por4.addPerfil(Perfil.PORTEIRO);
 		Porteiro por5 = new Porteiro(null, "Linus Torvalds", "778.556.170-27", "linus@mail.com", "123");
-
+		por5.addPerfil(Perfil.PORTEIRO);
+		
 		Morador mor1 = new Morador(null, "Albert Einstein", "111.661.890-74", "einstein@mail.com", "123");
 		Morador mor2 = new Morador(null, "Marie Curie", "322.429.140-06", "curie@mail.com","123");
 		Morador mor3 = new Morador(null, "Charles Darwin", "792.043.830-62", "darwin@mail.com", "123");

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.augusto.securegate.domain.Porteiro;
 import com.augusto.securegate.repositories.PorteiroRepository;
+import com.augusto.securegate.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class PorteiroService {
@@ -16,7 +17,7 @@ public class PorteiroService {
 	
 	public Porteiro findById(Integer id) {
 		Optional<Porteiro> obj = repository.findById(id);
-		return obj.orElse(null);
+		return obj.orElseThrow(() -> new ObjectNotFoundException ("Objeto não encontrado! ID: " + id));
 		
 	}
 

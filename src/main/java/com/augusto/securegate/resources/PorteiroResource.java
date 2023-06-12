@@ -45,7 +45,7 @@ public class PorteiroResource {
 	@PostMapping
 	public ResponseEntity<PorteiroDTO> create(@RequestBody PorteiroDTO objDTO){
 		Porteiro newObj = service.create(objDTO);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/id").buildAndExpand(newObj.getId()).toUri();
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newObj.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 		
 	}

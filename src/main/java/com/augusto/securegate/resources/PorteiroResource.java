@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.augusto.securegate.domain.Porteiro;
+import com.augusto.securegate.domain.dtos.PorteiroDTO;
 import com.augusto.securegate.services.PorteiroService;
 
 @RestController
@@ -20,9 +21,9 @@ public class PorteiroResource {
 	private PorteiroService service;
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Porteiro> findByID(@PathVariable Integer id){
+	public ResponseEntity<PorteiroDTO> findByID(@PathVariable Integer id){
 		Porteiro obj = this.service.findById(id);
-		return ResponseEntity.ok().body(obj);
+		return ResponseEntity.ok().body(new PorteiroDTO(obj));
 		
 	}
 

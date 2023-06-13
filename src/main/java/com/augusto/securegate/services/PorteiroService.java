@@ -3,6 +3,8 @@ package com.augusto.securegate.services;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,6 +40,14 @@ public class PorteiroService {
 		Porteiro newObj = new Porteiro(objDTO);
 		return repository.save(newObj);
 	}
+	
+	public Porteiro update(Integer id, @Valid PorteiroDTO objDTO) {
+		objDTO.setId(id);
+		Porteiro oldObj = findById(id);
+		validaPorCPFEEmail(objDTO);
+		oldObj = new Porteiro(objDTO);
+		return repository.save(oldObj);
+	}
 
 	private void validaPorCPFEEmail(PorteiroDTO objDTO) {
 		Optional<Pessoa> obj = pessoaRepository.findByCpf(objDTO.getCpf());
@@ -50,5 +60,6 @@ public class PorteiroService {
 			throw new DataIntegrityViolationException("Email já cadastrado no sistema!"); 
 		}
 	}
+
 
 }

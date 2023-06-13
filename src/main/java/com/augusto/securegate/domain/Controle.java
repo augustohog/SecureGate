@@ -37,6 +37,7 @@ public class Controle implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "morador_id")
 	private Morador morador;
+	
 	public Controle() {
 		super();
 	}

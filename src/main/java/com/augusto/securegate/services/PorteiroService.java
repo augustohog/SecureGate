@@ -48,7 +48,15 @@ public class PorteiroService {
 		oldObj = new Porteiro(objDTO);
 		return repository.save(oldObj);
 	}
-
+	
+	public void delete(Integer id) {
+		Porteiro obj = findById(id);
+		if(obj.getControles().size() > 0) {
+			throw new DataIntegrityViolationException("O porteiro possui controles de entrada e não pode ser deletado!!!");
+		}
+			repository.deleteById(id);
+	}
+	
 	private void validaPorCPFEEmail(PorteiroDTO objDTO) {
 		Optional<Pessoa> obj = pessoaRepository.findByCpf(objDTO.getCpf());
 		if(obj.isPresent() && obj.get().getId() != objDTO.getId()) {

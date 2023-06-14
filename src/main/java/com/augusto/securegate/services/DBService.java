@@ -3,6 +3,7 @@ package com.augusto.securegate.services;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.augusto.securegate.domain.Controle;
@@ -23,20 +24,22 @@ public class DBService {
 	private MoradorRepository moradorRepository;
 	@Autowired
 	private ControleRepository controleRepository;
+	@Autowired
+	private BCryptPasswordEncoder encoder;
 	
 	public void instanciaDB() {
-		Porteiro por1 = new Porteiro(null, "Augusto Henrique", "550.482.150-95", "augusto@mail.com", "123");
+		Porteiro por1 = new Porteiro(null, "Augusto Henrique", "550.482.150-95", "augusto@mail.com", encoder.encode("123"));
 		por1.addPerfil(Perfil.PORTEIRO);
-		Porteiro por2 = new Porteiro(null, "Luana Souza", "903.347.070-56", "luana@mail.com", "123");
-		Porteiro por3 = new Porteiro(null, "Claude Elwood Shannon", "271.068.470-54", "shannon@mail.com", "123");
-		Porteiro por4 = new Porteiro(null, "Tim Berners-Lee", "162.720.120-39", "lee@mail.com", "123");
-		Porteiro por5 = new Porteiro(null, "Linus Torvalds", "778.556.170-27", "linus@mail.com", "123");
+		Porteiro por2 = new Porteiro(null, "Luana Souza", "903.347.070-56", "luana@mail.com", encoder.encode("123"));
+		Porteiro por3 = new Porteiro(null, "Claude Elwood Shannon", "271.068.470-54", "shannon@mail.com", encoder.encode("123"));
+		Porteiro por4 = new Porteiro(null, "Tim Berners-Lee", "162.720.120-39", "lee@mail.com", encoder.encode("123"));
+		Porteiro por5 = new Porteiro(null, "Linus Torvalds", "778.556.170-27", "linus@mail.com", encoder.encode("123"));
 		
-		Morador mor1 = new Morador(null, "Albert Einstein", "111.661.890-74", "einstein@mail.com", "123");
-		Morador mor2 = new Morador(null, "Marie Curie", "322.429.140-06", "curie@mail.com","123");
-		Morador mor3 = new Morador(null, "Charles Darwin", "792.043.830-62", "darwin@mail.com", "123");
-		Morador mor4 = new Morador(null, "Stephen Hawking", "177.409.680-30", "hawking@mail.com", "123");
-		Morador mor5 = new Morador(null, "Max Planck", "081.399.300-83", "planck@mail.com", "123");
+		Morador mor1 = new Morador(null, "Albert Einstein", "111.661.890-74", "einstein@mail.com", encoder.encode("123"));
+		Morador mor2 = new Morador(null, "Marie Curie", "322.429.140-06", "curie@mail.com", encoder.encode("123"));
+		Morador mor3 = new Morador(null, "Charles Darwin", "792.043.830-62", "darwin@mail.com", encoder.encode("123"));
+		Morador mor4 = new Morador(null, "Stephen Hawking", "177.409.680-30", "hawking@mail.com", encoder.encode("123"));
+		Morador mor5 = new Morador(null, "Max Planck", "081.399.300-83", "planck@mail.com", encoder.encode("123"));
  
 		Controle c1 = new Controle(null, Status.ABERTO, "Controle 1", por1, mor1);
 		Controle c2 = new Controle(null, Status.ABERTO, "Visitante morador2", por2, mor2);

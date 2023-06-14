@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.augusto.securegate.domain.Pessoa;
@@ -23,6 +24,8 @@ public class MoradorService {
 	private MoradorRepository repository;
 	@Autowired
 	private PessoaRepository pessoaRepository;
+	@Autowired
+	private BCryptPasswordEncoder encoder;
 	
 	public Morador findById(Integer id) {
 		Optional<Morador> obj = repository.findById(id);
@@ -36,6 +39,7 @@ public class MoradorService {
 
 	public Morador create(MoradorDTO objDTO) {
 		objDTO.setId(null);
+		objDTO.setSenha(encoder.encode(objDTO.getSenha()));
 		validaPorCPFEEmail(objDTO);
 		Morador newObj = new Morador(objDTO);
 		return repository.save(newObj);

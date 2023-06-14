@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.augusto.securegate.domain.Pessoa;
@@ -23,6 +24,8 @@ public class PorteiroService {
 	private PorteiroRepository repository;
 	@Autowired
 	private PessoaRepository pessoaRepository;
+	@Autowired
+	private BCryptPasswordEncoder encoder;
 	
 	public Porteiro findById(Integer id) {
 		Optional<Porteiro> obj = repository.findById(id);
@@ -36,6 +39,7 @@ public class PorteiroService {
 
 	public Porteiro create(PorteiroDTO objDTO) {
 		objDTO.setId(null);
+		objDTO.setSenha(encoder.encode(objDTO.getSenha()));
 		validaPorCPFEEmail(objDTO);
 		Porteiro newObj = new Porteiro(objDTO);
 		return repository.save(newObj);

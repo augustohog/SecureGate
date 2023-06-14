@@ -30,6 +30,7 @@ public class DBService {
 	public void instanciaDB() {
 		Porteiro por1 = new Porteiro(null, "Augusto Henrique", "550.482.150-95", "augusto@mail.com", encoder.encode("123"));
 		por1.addPerfil(Perfil.PORTEIRO);
+		por1.addPerfil(Perfil.ADMIN);
 		Porteiro por2 = new Porteiro(null, "Luana Souza", "903.347.070-56", "luana@mail.com", encoder.encode("123"));
 		Porteiro por3 = new Porteiro(null, "Claude Elwood Shannon", "271.068.470-54", "shannon@mail.com", encoder.encode("123"));
 		Porteiro por4 = new Porteiro(null, "Tim Berners-Lee", "162.720.120-39", "lee@mail.com", encoder.encode("123"));

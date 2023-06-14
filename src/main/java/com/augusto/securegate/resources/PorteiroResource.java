@@ -8,6 +8,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,41 +26,45 @@ import com.augusto.securegate.services.PorteiroService;
 @RestController
 @RequestMapping(value = "/porteiros")
 public class PorteiroResource {
-	
+
 	// localhost:8080/porteiros/1
-	
+
 	@Autowired
 	private PorteiroService service;
-	
+
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<PorteiroDTO> findByID(@PathVariable Integer id){
+	public ResponseEntity<PorteiroDTO> findByID(@PathVariable Integer id) {
 		Porteiro obj = this.service.findById(id);
 		return ResponseEntity.ok().body(new PorteiroDTO(obj));
-		
+
 	}
-	
+
 	@GetMapping
-	public ResponseEntity<List<PorteiroDTO>> findAll(){
+	public ResponseEntity<List<PorteiroDTO>> findAll() {
 		List<Porteiro> list = service.findAll();
 		List<PorteiroDTO> listDTO = list.stream().map(obj -> new PorteiroDTO(obj)).collect(Collectors.toList());
-		
+
 		return ResponseEntity.ok().body(listDTO);
 	}
-	
+
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	@PostMapping
-	public ResponseEntity<PorteiroDTO> create(@Valid @RequestBody PorteiroDTO objDTO){
+	public ResponseEntity<PorteiroDTO> create(@Valid @RequestBody PorteiroDTO objDTO) {
 		Porteiro newObj = service.create(objDTO);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newObj.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
+
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<PorteiroDTO> update(@PathVariable Integer id, @Valid @RequestBody PorteiroDTO objDTO){
+	public ResponseEntity<PorteiroDTO> update(@PathVariable Integer id, @Valid @RequestBody PorteiroDTO objDTO) {
 		Porteiro obj = service.update(id, objDTO);
 		return ResponseEntity.ok().body(new PorteiroDTO(obj));
 	}
-	
+
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	@DeleteMapping(value = "/{id}")
-	public ResponseEntity<PorteiroDTO> delete(@PathVariable Integer id){
+	public ResponseEntity<PorteiroDTO> delete(@PathVariable Integer id) {
 		service.delete(id);
 		return ResponseEntity.noContent().build();
 	}

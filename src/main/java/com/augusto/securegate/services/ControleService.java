@@ -1,5 +1,6 @@
 package com.augusto.securegate.services;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,7 +25,7 @@ public class ControleService {
 	private PorteiroService porteiroService;
 	@Autowired
 	private MoradorService moradorService;
-	
+
 	public Controle findById(Integer id) {
 		Optional<Controle> obj = repository.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! ID: " + id));
@@ -37,22 +38,33 @@ public class ControleService {
 	public Controle create(@Valid ControleDTO objDTO) {
 		return repository.save(newControle(objDTO));
 	}
-	
+
+	public Controle update(Integer id, @Valid ControleDTO objDTO) {
+		objDTO.setId(id);
+		Controle oldObj = findById(id);
+		oldObj = newControle(objDTO);
+		return repository.save(oldObj);
+	}
+
 	private Controle newControle(ControleDTO obj) {
 		Porteiro porteiro = porteiroService.findById(obj.getPorteiro());
 		Morador morador = moradorService.findById(obj.getMorador());
-		
+
 		Controle controle = new Controle();
-		if(obj.getId() != null) {
+		if (obj.getId() != null) {
 			controle.setId(obj.getId());
 		}
 		
+		if(obj.getStatus().equals(1)) {
+			controle.setDataSaida(LocalDate.now());
+		}
+
 		controle.setPorteiro(porteiro);
 		controle.setMorador(morador);
 		controle.setStatus(Status.toEnum(obj.getStatus()));
 		controle.setObservações(obj.getObservações());
 		return controle;
-		
+
 	}
 
 }

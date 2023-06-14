@@ -38,11 +38,11 @@ public class DBService {
 		Morador mor4 = new Morador(null, "Stephen Hawking", "177.409.680-30", "hawking@mail.com", "123");
 		Morador mor5 = new Morador(null, "Max Planck", "081.399.300-83", "planck@mail.com", "123");
  
-		Controle c1 = new Controle(null, Status.RESIDENTE, "Controle 1", por1, mor1);
-		Controle c2 = new Controle(null, Status.VISITANTE, "Visitante morador2", por2, mor2);
-		Controle c3 = new Controle(null, Status.VISITANTE, "Visitante morador3", por3, mor3);
-		Controle c4 = new Controle(null, Status.RESIDENTE, "Controle 1", por4, mor4);
-		Controle c5 = new Controle(null, Status.RESIDENTE, "Controle 1", por5, mor5);
+		Controle c1 = new Controle(null, Status.ABERTO, "Controle 1", por1, mor1);
+		Controle c2 = new Controle(null, Status.ABERTO, "Visitante morador2", por2, mor2);
+		Controle c3 = new Controle(null, Status.ABERTO, "Visitante morador3", por3, mor3);
+		Controle c4 = new Controle(null, Status.ABERTO, "Controle 1", por4, mor4);
+		Controle c5 = new Controle(null, Status.ABERTO, "Controle 1", por5, mor5);
 		
 
 		porteiroRepository.saveAll(Arrays.asList(por1, por2, por3, por4, por5));

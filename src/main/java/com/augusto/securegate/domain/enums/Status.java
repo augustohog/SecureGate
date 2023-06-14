@@ -1,7 +1,7 @@
 package com.augusto.securegate.domain.enums;
 
 public enum Status {
-	RESIDENTE(0, "RESIDENTE"), VISITANTE(1, "VISITANTE");
+	ABERTO(0, "ABERTO"), FECHADO(1, "FECHADO");
 	
 	private Integer codigo;
 	private String descricao;

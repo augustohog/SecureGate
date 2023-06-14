@@ -3,6 +3,8 @@ package com.augusto.securegate.domain.dtos;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import javax.validation.constraints.NotNull;
+
 import com.augusto.securegate.domain.Controle;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -14,9 +16,13 @@ public class ControleDTO implements Serializable{
 	private LocalDate dataEntrada = LocalDate.now();
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dataSaida;
+	@NotNull(message = "O campo STATUS é requerido")
 	private Integer status;
+	@NotNull(message = "O campo OBSERVAÇÕES é requerido")
 	private String observações;
+	@NotNull(message = "O campo PORTEIRO é requerido")
 	private Integer porteiro;
+	@NotNull(message = "O campo MORADOR é requerido")
 	private Integer morador;
 	private String nomePorteiro;
 	private String nomeMorador;

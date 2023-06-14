@@ -1,5 +1,8 @@
 package com.augusto.securegate.resources;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +25,13 @@ public class ControleResource {
 	public ResponseEntity<ControleDTO> findById(@PathVariable Integer id){
 		Controle obj = service.findById(id);
 		return ResponseEntity.ok().body(new ControleDTO(obj));
+	}
+	
+	@GetMapping
+	public ResponseEntity<List<ControleDTO>> findAll(){
+		List<Controle> list = service.findAll();
+		List<ControleDTO> listDTO = list.stream().map(obj -> new ControleDTO(obj)).collect(Collectors.toList());
+		return ResponseEntity.ok().body(listDTO);
 	}
 
 }

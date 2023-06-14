@@ -1,5 +1,6 @@
 package com.augusto.securegate.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,10 @@ public class ControleService {
 	public Controle findById(Integer id) {
 		Optional<Controle> obj = repository.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! ID: " + id));
+	}
+
+	public List<Controle> findAll() {
+		return repository.findAll();
 	}
 
 }
